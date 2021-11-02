@@ -2,7 +2,7 @@ const NewCatForm = (props) => {
   return (
     <section>
       <h2>Submit New Bodega Cat</h2>
-      <form>
+      <form onSubmit={props.addNewCat}>
         Image: <input type="text" onChange={props.addNewImage} />
         <br />
         <br />
