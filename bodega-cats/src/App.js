@@ -54,7 +54,8 @@ const App = () => {
           setCats(response.data);
         });
       });
-  };
+
+
 
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
