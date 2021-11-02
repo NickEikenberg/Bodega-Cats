@@ -54,6 +54,11 @@ const App = () => {
           setCats(response.data);
         });
       });
+    let editForm = document.querySelector('div.show')
+    let editBtn = document.querySelector('span')
+    editForm.classList.remove('show')
+    editForm.classList.remove('hide')
+    editBtn.className = 'show'
   };
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {

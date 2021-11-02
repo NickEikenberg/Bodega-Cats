@@ -1,12 +1,13 @@
 const CatsIndex = (props) => {
 
 
-  // const showEdit = () => {
-  //   let editForm = document.getElement('div')
-  //   let editBtn = document.getElementById('edit-btn')
-  //   editForm.className = 'show'
-  //   editBtn.className = 'hide'
-  // }
+  const showEdit = () => {
+    let editForm = document.querySelector('div.hide')
+    let editBtn = document.querySelector('span')
+    editForm.classList.remove('hide')
+    editForm.classList.add('show')
+    editBtn.className = 'hide'
+  }
 
   return (
     <section>
@@ -22,9 +23,9 @@ const CatsIndex = (props) => {
               <br />
 
 
-              <button id="edit-btn" className="show" >Edit</button><br/>
+              <span className="show"><button  onClick={showEdit}>Edit</button><br/></span>
 
-              <div className="show">
+              <div className="hide">
                 <form
                   id={cat._id}
                   onSubmit={(event) => {
