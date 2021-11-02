@@ -46,7 +46,11 @@ const App = () => {
   const editCat = (cat) => {
     axios
       .put(
-        `http://localhost:3000/bodega-cats/${cat._id}`
+        `http://localhost:3000/bodega-cats/${cat._id}`,
+        {
+          image: newImage || cat.image,
+          date: newDate || cat.date
+        }
       ).then(() => {
         axios
           .get('http://localhost:3000/bodega-cats')
@@ -54,6 +58,8 @@ const App = () => {
             setCats(response.data)
         })
       })
+    let hiddenForm = document.getElementById('edit')
+    hiddenForm.className = 'hide'
   }
 
   useEffect(() => {

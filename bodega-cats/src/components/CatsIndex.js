@@ -1,4 +1,10 @@
 const CatsIndex = (props) => {
+
+  const showEdit = () => {
+    let editbtn = document.getElementById('edit')
+    editbtn.className = 'show'
+  }
+
   return (
     <section>
       <h2>Cats</h2>
@@ -11,8 +17,13 @@ const CatsIndex = (props) => {
               <br />
               {cat.date}
 
+              <button onClick={showEdit}>Edit</button><br/>
+
               <form
+                id="edit"
+                className="hide"
                 onSubmit={(event) => {
+                  event.preventDefault()
                   props.editCat(cat);
                 }}
               >
