@@ -45,24 +45,19 @@ const App = () => {
   const editCat = (cat) => {
     axios
 
-      .put(
-        `http://localhost:3000/bodega-cats/${cat._id}`,
-        {
-          image: newImage || cat.image,
-          date: newDate || cat.date
-        }
-      ).then(() => {
-        axios
-          .get('http://localhost:3000/bodega-cats')
-          .then((response) => {
-            setCats(response.data)
-        })
+      .put(`http://localhost:3000/bodega-cats/${cat._id}`, {
+        image: newImage || cat.image,
+        date: newDate || cat.date,
       })
-    let hiddenForm = document.getElementById('edit')
-    hiddenForm.className = 'hide'
-  }
-
-
+      .then(() => {
+        axios.get('http://localhost:3000/bodega-cats').then((response) => {
+          setCats(response.data);
+        });
+      });
+    console.log(cat._id);
+    // let hiddenForm = document.getElementById(cat._id);
+    // console.log(hiddenForm);
+  };
 
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
