@@ -5,6 +5,7 @@ import axios from 'axios';
 import NewCatForm from './components/NewCatForm';
 import BodegaCatsHeader from './components/BodegaCatsHeader';
 import CatsIndex from './components/CatsIndex';
+import NavBar from './components/NavBar';
 
 const App = () => {
   const [cats, setCats] = useState([]);
@@ -65,6 +66,9 @@ const App = () => {
     <main>
       <>
         <BodegaCatsHeader />
+      </>
+      <>
+        <NavBar />
       </>
       <>
         <NewCatForm
