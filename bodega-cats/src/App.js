@@ -54,7 +54,7 @@ const App = () => {
 
   const editCat = (cat) => {
     axios
-      .delete(
+      .put(
         `http://localhost:3000/bodega-cats/${cat._id}`
       ).then(() => {
         axios
