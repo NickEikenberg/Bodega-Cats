@@ -1,57 +1,101 @@
 import './App.css';
-import {useState, useEffect} from 'react'
-import axios from 'axios'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import NewCatForm from './components/NewCatForm';
+import BodegaCatsHeader from './components/BodegaCatsHeader';
+import CatsIndex from './components/CatsIndex';
 
 const App = () => {
-  const [cats, setCats] = useState([])
-  const [date, setNewDate] = useState()
-  const [image, setNewImage] = useState()
+  const [cats, setCats] = useState([]);
+
+  const [newDate, setNewDate] = useState();
+  const [newImage, setNewImage] = useState();
 
   const addNewImage = (event) => {
-    setNewImage(event.target.value)
-  }
+    setNewImage(event.target.value);
+  };
 
   const addNewDate = (event) => {
-    setNewDate(event.target.value)
+    setNewDate(event.target.value);
+  };
+
+  const addNewCat = (event) => {
+    event.preventDefault();
+    axios
+      .post('http://localhost:3000/bodega-cats', {
+        image: newImage,
+        date: newDate,
+      })
+      .then(() => {
+        axios.get('http://localhost:3000/bodega-cats').then((response) => {
+          setCats(response.data);
+        });
+      });
+  };
+
+  const deletedCat = (event) => {
+    axios.delete(`http://localhost:3000/bodega-cats/${event._id}`).then(() => {
+      axios.get('http://localhost:3000/bodega-cats').then((response) => {
+        setCats(response.data);
+      });
+    });
+  };
+
+  const editCat = (cat) => {
+    axios
+
+      .put(
+        `http://localhost:3000/bodega-cats/${cat._id}`,
+        {
+          image: newImage || cat.image,
+          date: newDate || cat.date
+        }
+      ).then(() => {
+        axios
+          .get('http://localhost:3000/bodega-cats')
+          .then((response) => {
+            setCats(response.data)
+        })
+      })
+    // let hiddenForm = document.getElementById('edit-form')
+    // hiddenForm.className = 'hide'
+    // let hiddenBtn = document.getElementById('edit-btn')
+    // hiddenBtn.className = 'show'
   }
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/bodega-cats')
-      .then((response) => {
-        setCats(response.data)
-      })
-  })
 
-  return(
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/bodega-cats').then((response) => {
+      setCats(response.data);
+    });
+  }, []);
+
+  return (
     <main>
-      <h1>Bodega Cats</h1>
-      <section>
-        <h2>Submit New Bodega Cat</h2>
-        <form>
-          Image: <input type="text" onChange={addNewImage}/><br/><br/>
-          Date: <input type="text" onChange={addNewDate}/><br/><br/>
-          <input type="submit"/>
-        </form>
-      </section>
-      <section>
-        <h2>Cats</h2>
-        <ul>
-          {
-            cats.map((cat) => {
-              return <li>
-                <img src={cat.image} /><br/>
-                {cat.date}
-                <button onClick={(event) => {
-                  {deletedCat(cat)}
-                }}>
-                </li>
-            })
-          }
-        </ul>
-      </section>
+      <>
+        <BodegaCatsHeader />
+      </>
+      <>
+        <NewCatForm
+          addNewImage={addNewImage}
+          addNewDate={addNewDate}
+          addNewCat={addNewCat}
+        />
+      </>
+
+      <>
+        <CatsIndex
+          cats={cats}
+          editCat={editCat}
+          addNewImage={addNewImage}
+          addNewDate={addNewDate}
+          deletedCat={deletedCat}
+        />
+      </>
     </main>
-  )
-}
+  );
+};
 
 export default App;
