@@ -1,5 +1,6 @@
 const CatsIndex = (props) => {
 
+
   // const showEdit = () => {
   //   let editForm = document.getElement('div')
   //   let editBtn = document.getElementById('edit-btn')
@@ -17,7 +18,9 @@ const CatsIndex = (props) => {
               {console.log(cat.image)}
               <img src={cat.image} alt="Bodega Cat" />
               <br />
-              {cat.date}<br/>
+              {cat.date}
+              <br />
+
 
               <button id="edit-btn" className="show" >Edit</button><br/>
 
@@ -46,6 +49,7 @@ const CatsIndex = (props) => {
                   <input type="submit" value="Submit Changes" />
                 </form>
               </div>
+
               <button
                 onClick={(event) => {
                   props.deletedCat(cat);
