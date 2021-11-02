@@ -12,6 +12,11 @@ const App = () => {
 
   const [newDate, setNewDate] = useState();
   const [newImage, setNewImage] = useState();
+  const [isAddingNew, setIsAddingNew] = useState(false);
+
+  const showHideAddModal = () => {
+    setIsAddingNew(!isAddingNew);
+  };
 
   const addNewImage = (event) => {
     setNewImage(event.target.value);
@@ -33,6 +38,7 @@ const App = () => {
           setCats(response.data);
         });
       });
+    showHideAddModal();
   };
 
   const deletedCat = (event) => {
@@ -68,14 +74,16 @@ const App = () => {
         <BodegaCatsHeader />
       </>
       <>
-        <NavBar />
+        <NavBar showHideAddModal={showHideAddModal} />
       </>
       <>
-        <NewCatForm
-          addNewImage={addNewImage}
-          addNewDate={addNewDate}
-          addNewCat={addNewCat}
-        />
+        {isAddingNew ? (
+          <NewCatForm
+            addNewImage={addNewImage}
+            addNewDate={addNewDate}
+            addNewCat={addNewCat}
+          />
+        ) : null}
       </>
 
       <>

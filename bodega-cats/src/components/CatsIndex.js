@@ -1,6 +1,4 @@
 const CatsIndex = (props) => {
-
-
   // const showEdit = () => {
   //   let editForm = document.getElement('div')
   //   let editBtn = document.getElementById('edit-btn')
@@ -15,20 +13,21 @@ const CatsIndex = (props) => {
         {props.cats.map((cat) => {
           return (
             <li>
-              {console.log(cat.image)}
               <img src={cat.image} alt="Bodega Cat" />
               <br />
               {cat.date}
               <br />
 
-
-              <button id="edit-btn" className="show" >Edit</button><br/>
+              <button id="edit-btn" className="show">
+                Edit
+              </button>
+              <br />
 
               <div className="show">
                 <form
                   id={cat._id}
                   onSubmit={(event) => {
-                    event.preventDefault()
+                    event.preventDefault();
                     props.editCat(cat);
                   }}
                 >

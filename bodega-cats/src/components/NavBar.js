@@ -1,7 +1,7 @@
 const NavBar = (props) => {
   return (
     <nav>
-      <button>New Bodega Cat</button>
+      <button onClick={props.showHideAddModal}>New Bodega Cat</button>
     </nav>
   );
 };
