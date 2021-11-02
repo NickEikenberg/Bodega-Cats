@@ -1,7 +1,7 @@
 const CatsIndex = (props) => {
 
   // const showEdit = () => {
-  //   let editForm = document.getElementById('edit-form')
+  //   let editForm = document.getElement('div')
   //   let editBtn = document.getElementById('edit-btn')
   //   editForm.className = 'show'
   //   editBtn.className = 'hide'
@@ -19,31 +19,33 @@ const CatsIndex = (props) => {
               <br />
               {cat.date}<br/>
 
-              <button id="edit-btn" className="show">Edit</button><br/>
+              <button id="edit-btn" className="show" >Edit</button><br/>
 
-              <form
-                id={cat._id}
-                onSubmit={(event) => {
-                  event.preventDefault()
-                  props.editCat(cat);
-                }}
-              >
-                Image:{' '}
-                <input
-                  type="text"
-                  onChange={props.addNewImage}
-                  placeholder={cat.image}
-                />
-                <br />
-                Date:{' '}
-                <input
-                  type="text"
-                  onChange={props.addNewDate}
-                  placeholder={cat.date}
-                />
-                <br />
-                <input type="submit" value="Submit Changes" />
-              </form>
+              <div className="show">
+                <form
+                  id={cat._id}
+                  onSubmit={(event) => {
+                    event.preventDefault()
+                    props.editCat(cat);
+                  }}
+                >
+                  Image:{' '}
+                  <input
+                    type="text"
+                    onChange={props.addNewImage}
+                    placeholder={cat.image}
+                  />
+                  <br />
+                  Date:{' '}
+                  <input
+                    type="text"
+                    onChange={props.addNewDate}
+                    placeholder={cat.date}
+                  />
+                  <br />
+                  <input type="submit" value="Submit Changes" />
+                </form>
+              </div>
               <button
                 onClick={(event) => {
                   props.deletedCat(cat);
