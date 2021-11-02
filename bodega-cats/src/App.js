@@ -10,8 +10,10 @@ const newfunction = () => 2 + 4;
 
 const App = () => {
   const [cats, setCats] = useState([]);
+
   const [newDate, setNewDate] = useState();
   const [newImage, setNewImage] = useState();
+
 
   const addNewImage = (event) => {
     setNewImage(event.target.value);
@@ -20,6 +22,7 @@ const App = () => {
   const addNewDate = (event) => {
     setNewDate(event.target.value);
   };
+
 
   const addNewCat = (event) => {
     event.preventDefault();
@@ -35,6 +38,7 @@ const App = () => {
       });
   };
 
+
   const deletedCat = (event) => {
     axios.delete(`http://localhost:3000/bodega-cats/${event._id}`).then(() => {
       axios.get('http://localhost:3000/bodega-cats').then((response) => {
@@ -44,6 +48,7 @@ const App = () => {
   };
 
   const editCat = (cat) => {
+
     axios
       .put(
         `http://localhost:3000/bodega-cats/${cat._id}`,
@@ -62,6 +67,7 @@ const App = () => {
     hiddenForm.className = 'hide'
   }
 
+
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
       setCats(response.data);
@@ -77,6 +83,7 @@ const App = () => {
         <NewCatForm addNewImage={addNewImage} addNewDate={addNewDate} addNewCat={addNewCat}/>
       </>
 
+
       <>
         <CatsIndex
           cats={cats}
@@ -86,6 +93,7 @@ const App = () => {
           deletedCat={deletedCat}
         />
       </>
+
     </main>
   );
 };
