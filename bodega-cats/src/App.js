@@ -44,16 +44,25 @@ const App = () => {
 
   const editCat = (cat) => {
     axios
-      .put(`http://localhost:3000/bodega-cats/${cat._id}`, {
-        image: newImage || cat.image,
-        date: newDate || cat.date,
+
+      .put(
+        `http://localhost:3000/bodega-cats/${cat._id}`,
+        {
+          image: newImage || cat.image,
+          date: newDate || cat.date
+        }
+      ).then(() => {
+        axios
+          .get('http://localhost:3000/bodega-cats')
+          .then((response) => {
+            setCats(response.data)
+        })
       })
-      .then(() => {
-        axios.get('http://localhost:3000/bodega-cats').then((response) => {
-          setCats(response.data);
-        });
-      });
-  };
+    let hiddenForm = document.getElementById('edit')
+    hiddenForm.className = 'hide'
+  }
+
+
 
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
