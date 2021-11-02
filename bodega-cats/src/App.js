@@ -6,14 +6,11 @@ import NewCatForm from './components/NewCatForm';
 import BodegaCatsHeader from './components/BodegaCatsHeader';
 import CatsIndex from './components/CatsIndex';
 
-const newfunction = () => 2 + 4;
-
 const App = () => {
   const [cats, setCats] = useState([]);
 
   const [newDate, setNewDate] = useState();
   const [newImage, setNewImage] = useState();
-
 
   const addNewImage = (event) => {
     setNewImage(event.target.value);
@@ -22,7 +19,6 @@ const App = () => {
   const addNewDate = (event) => {
     setNewDate(event.target.value);
   };
-
 
   const addNewCat = (event) => {
     event.preventDefault();
@@ -38,7 +34,6 @@ const App = () => {
       });
   };
 
-
   const deletedCat = (event) => {
     axios.delete(`http://localhost:3000/bodega-cats/${event._id}`).then(() => {
       axios.get('http://localhost:3000/bodega-cats').then((response) => {
@@ -48,8 +43,8 @@ const App = () => {
   };
 
   const editCat = (cat) => {
-
     axios
+
       .put(
         `http://localhost:3000/bodega-cats/${cat._id}`,
         {
@@ -68,6 +63,7 @@ const App = () => {
   }
 
 
+
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
       setCats(response.data);
@@ -80,9 +76,12 @@ const App = () => {
         <BodegaCatsHeader />
       </>
       <>
-        <NewCatForm addNewImage={addNewImage} addNewDate={addNewDate} addNewCat={addNewCat}/>
+        <NewCatForm
+          addNewImage={addNewImage}
+          addNewDate={addNewDate}
+          addNewCat={addNewCat}
+        />
       </>
-
 
       <>
         <CatsIndex
@@ -93,7 +92,6 @@ const App = () => {
           deletedCat={deletedCat}
         />
       </>
-
     </main>
   );
 };
