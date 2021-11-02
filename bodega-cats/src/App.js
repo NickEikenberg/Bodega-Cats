@@ -2,6 +2,8 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+const newfunction = () => 2 + 4
+
 const App = () => {
   const [cats, setCats] = useState([])
   const [date, setNewDate] = useState()
