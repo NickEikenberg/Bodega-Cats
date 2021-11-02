@@ -63,8 +63,10 @@ const App = () => {
             setCats(response.data)
         })
       })
-    let hiddenForm = document.getElementById('edit')
-    hiddenForm.className = 'hide'
+    // let hiddenForm = document.getElementById('edit-form')
+    // hiddenForm.className = 'hide'
+    // let hiddenBtn = document.getElementById('edit-btn')
+    // hiddenBtn.className = 'show'
   }
 
 
