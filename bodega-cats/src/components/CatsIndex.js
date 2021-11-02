@@ -1,8 +1,5 @@
 const CatsIndex = (props) => {
-  const showEdit = () => {
-    // let editbtn = document.getElementById('edit');
-    // editbtn.className = 'show';
-  };
+
 
   return (
     <section>
@@ -14,14 +11,14 @@ const CatsIndex = (props) => {
               {console.log(cat.image)}
               <img src={cat.image} alt="Bodega Cat" />
               <br />
-              {cat.date}
+              {cat.date}<br/>
 
-              <button onClick={showEdit}>Edit</button>
-              <br />
+
+              <button id="edit-btn" className="show">Edit</button><br/>
 
               <form
                 id={cat._id}
-                className="hide"
+
                 onSubmit={(event) => {
                   event.preventDefault();
                   props.editCat(cat);
