@@ -54,38 +54,37 @@ const App = () => {
           setCats(response.data);
         });
       });
-
-    useEffect(() => {
-      axios.get('http://localhost:3000/bodega-cats').then((response) => {
-        setCats(response.data);
-      });
-    }, []);
-
-    return (
-      <main>
-        <>
-          <BodegaCatsHeader />
-        </>
-        <>
-          <NewCatForm
-            addNewImage={addNewImage}
-            addNewDate={addNewDate}
-            addNewCat={addNewCat}
-          />
-        </>
-
-        <>
-          <CatsIndex
-            cats={cats}
-            editCat={editCat}
-            addNewImage={addNewImage}
-            addNewDate={addNewDate}
-            deletedCat={deletedCat}
-          />
-        </>
-      </main>
-    );
   };
+  useEffect(() => {
+    axios.get('http://localhost:3000/bodega-cats').then((response) => {
+      setCats(response.data);
+    });
+  }, []);
+
+  return (
+    <main>
+      <>
+        <BodegaCatsHeader />
+      </>
+      <>
+        <NewCatForm
+          addNewImage={addNewImage}
+          addNewDate={addNewDate}
+          addNewCat={addNewCat}
+        />
+      </>
+
+      <>
+        <CatsIndex
+          cats={cats}
+          editCat={editCat}
+          addNewImage={addNewImage}
+          addNewDate={addNewDate}
+          deletedCat={deletedCat}
+        />
+      </>
+    </main>
+  );
 };
 
 export default App;
