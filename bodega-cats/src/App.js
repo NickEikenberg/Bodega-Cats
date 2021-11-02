@@ -10,8 +10,8 @@ const newfunction = () => 2 + 4
 const App = () => {
 
   const [cats, setCats] = useState([]);
-  const [date, setNewDate] = useState();
-  const [image, setNewImage] = useState();
+  const [newDate, setNewDate] = useState();
+  const [newImage, setNewImage] = useState();
 
 
   const addNewImage = (event) => {
@@ -69,7 +69,7 @@ const App = () => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
       setCats(response.data);
     });
-  });
+  },[]);
 
   return (
     <main>
@@ -87,6 +87,7 @@ const App = () => {
           {cats.map((cat) => {
             return (
               <li>
+                {console.log(cat.image)}
                 <img src={cat.image} alt="Bodega Cat" />
                 <br />
                 {cat.date}
@@ -98,9 +99,9 @@ const App = () => {
                 </form>
                 <button onClick={(event) => {deletedCat(cat)}}>Delete</button>
                 </li>
-            })
-          }
-
+            )
+          })
+        }
         </ul>
       </section>
     </main>
