@@ -27,9 +27,17 @@ code {
     monospace;
 }
 
+li {
+  list-style: none;
+}
+
 main {
   width: 75vw;
   color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -47,10 +55,98 @@ header {
   margin: 0 auto;
 }
 
+.newBodegaCatModal {
+  position: fixed;
+  background: rgba(61, 155, 240, 0.8);
+  width: 50vw;
+  height: 35vh;
+  padding: 10rem 0;
+  border: 1px solid rgba(61, 155, 240, 0.8);
+  border-radius: 10px;
+  text-shadow: 2px 2px 1px black;
+  top: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.newBodegaCatModal h2 {
+  margin: 1rem;
+}
+.newBodegaCatModal form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.newBodegaCatModal input {
+  width: 50%;
+  height: 30%;
+  background: none;
+}
+.newBodegaCatModal input[type='submit']:hover {
+  cursor: pointer;
+  background: rgba(61, 155, 240, 0.8);
+}
+
+/********** CATS INDEX *************/
+
+.catsIndex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.bodegaCat {
+  width: 70%;
+
+  text-align: center;
+  position: relative;
+  margin-bottom: 7rem;
+}
+.bodegaCat h1 {
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+}
+.bodegaCat img {
+  width: 100%;
+}
+
+.catEditForm {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 30%;
+  background: rgba(61, 155, 240, 0.8);
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.catEditForm input {
+  width: 75%;
+}
+
+#edit-btn {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 0;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+}
+
 .show {
   display: inline-block;
 }
 
 .hide {
+  display: none;
+}
+
+.hidden {
   display: none;
 }

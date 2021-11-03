@@ -1,4 +1,5 @@
 const CatsIndex = (props) => {
+<<<<<<< HEAD
 
 
   const showEdit = () => {
@@ -8,28 +9,45 @@ const CatsIndex = (props) => {
     editForm.classList.add('show')
     editBtn.className = 'hide'
   }
+=======
+  // const showEdit = () => {
+  //   let editForm = document.getElement('div')
+  //   let editBtn = document.getElementById('edit-btn')
+  //   editForm.className = 'show'
+  //   editBtn.className = 'hide'
+  // }
+>>>>>>> f98dcf4caa26c52a9e0b4bb247e51b58c7c4fb7f
 
   return (
     <section>
-      <h2>Cats</h2>
-      <ul>
+      <ul className="catsIndex">
         {props.cats.map((cat) => {
           return (
-            <li>
-              {console.log(cat.image)}
+            <li class="bodegaCat">
+              <h1>{cat.date}</h1>
               <img src={cat.image} alt="Bodega Cat" />
               <br />
-              {cat.date}
-              <br />
 
+<<<<<<< HEAD
 
               <span className="show"><button  onClick={showEdit}>Edit</button><br/></span>
+=======
+              <button
+                id="edit-btn"
+                className="show"
+                onClick={() => props.showCatEditForm(cat)}
+              >
+                Edit
+              </button>
+              <br />
+>>>>>>> f98dcf4caa26c52a9e0b4bb247e51b58c7c4fb7f
 
               <div className="hide">
                 <form
                   id={cat._id}
+                  className="catEditForm hidden"
                   onSubmit={(event) => {
-                    event.preventDefault()
+                    event.preventDefault();
                     props.editCat(cat);
                   }}
                 >
@@ -48,16 +66,16 @@ const CatsIndex = (props) => {
                   />
                   <br />
                   <input type="submit" value="Submit Changes" />
+                  <button
+                    onClick={(event) => {
+                      props.deletedCat(cat);
+                      props.showCatEditForm(cat);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </form>
               </div>
-
-              <button
-                onClick={(event) => {
-                  props.deletedCat(cat);
-                }}
-              >
-                Delete
-              </button>
             </li>
           );
         })}
