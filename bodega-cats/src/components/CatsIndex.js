@@ -52,6 +52,7 @@ const CatsIndex = (props) => {
                   <button
                     onClick={(event) => {
                       props.deletedCat(cat);
+                      props.showCatEditForm(cat);
                     }}
                   >
                     Delete
