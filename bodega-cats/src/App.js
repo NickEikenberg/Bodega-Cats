@@ -14,6 +14,10 @@ const App = () => {
   const [newImage, setNewImage] = useState();
   const [isAddingNew, setIsAddingNew] = useState(false);
 
+  const showCatEditForm = (cat) => {
+    document.getElementById(cat._id).classList.toggle('hidden');
+  };
+
   const showHideAddModal = () => {
     setIsAddingNew(!isAddingNew);
   };
@@ -93,6 +97,7 @@ const App = () => {
           addNewImage={addNewImage}
           addNewDate={addNewDate}
           deletedCat={deletedCat}
+          showCatEditForm={showCatEditForm}
         />
       </>
     </main>

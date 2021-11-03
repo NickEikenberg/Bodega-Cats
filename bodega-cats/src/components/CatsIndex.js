@@ -8,17 +8,19 @@ const CatsIndex = (props) => {
 
   return (
     <section>
-      <h2>Cats</h2>
-      <ul>
+      <ul className="catsIndex">
         {props.cats.map((cat) => {
           return (
-            <li>
+            <li class="bodegaCat">
+              <h1>{cat.date}</h1>
               <img src={cat.image} alt="Bodega Cat" />
               <br />
-              {cat.date}
-              <br />
 
-              <button id="edit-btn" className="show">
+              <button
+                id="edit-btn"
+                className="show"
+                onClick={() => props.showCatEditForm(cat)}
+              >
                 Edit
               </button>
               <br />
@@ -26,6 +28,7 @@ const CatsIndex = (props) => {
               <div className="show">
                 <form
                   id={cat._id}
+                  className="catEditForm hidden"
                   onSubmit={(event) => {
                     event.preventDefault();
                     props.editCat(cat);
@@ -46,16 +49,15 @@ const CatsIndex = (props) => {
                   />
                   <br />
                   <input type="submit" value="Submit Changes" />
+                  <button
+                    onClick={(event) => {
+                      props.deletedCat(cat);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </form>
               </div>
-
-              <button
-                onClick={(event) => {
-                  props.deletedCat(cat);
-                }}
-              >
-                Delete
-              </button>
             </li>
           );
         })}
