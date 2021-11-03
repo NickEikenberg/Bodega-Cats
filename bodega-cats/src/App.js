@@ -5,12 +5,22 @@ import axios from 'axios';
 import NewCatForm from './components/NewCatForm';
 import BodegaCatsHeader from './components/BodegaCatsHeader';
 import CatsIndex from './components/CatsIndex';
+import NavBar from './components/NavBar';
 
 const App = () => {
   const [cats, setCats] = useState([]);
 
   const [newDate, setNewDate] = useState();
   const [newImage, setNewImage] = useState();
+  const [isAddingNew, setIsAddingNew] = useState(false);
+
+  const showCatEditForm = (cat) => {
+    document.getElementById(cat._id).classList.toggle('hidden');
+  };
+
+  const showHideAddModal = () => {
+    setIsAddingNew(!isAddingNew);
+  };
 
   const addNewImage = (event) => {
     setNewImage(event.target.value);
@@ -32,6 +42,7 @@ const App = () => {
           setCats(response.data);
         });
       });
+    showHideAddModal();
   };
 
   const deletedCat = (event) => {
@@ -54,6 +65,11 @@ const App = () => {
           setCats(response.data);
         });
       });
+    // let editForm = document.querySelector('div.show')
+    // let editBtn = document.querySelector('span')
+    // editForm.classList.remove('show')
+    // editForm.classList.remove('hide')
+    // editBtn.className = 'show'
   };
   useEffect(() => {
     axios.get('http://localhost:3000/bodega-cats').then((response) => {
@@ -67,11 +83,16 @@ const App = () => {
         <BodegaCatsHeader />
       </>
       <>
-        <NewCatForm
-          addNewImage={addNewImage}
-          addNewDate={addNewDate}
-          addNewCat={addNewCat}
-        />
+        <NavBar showHideAddModal={showHideAddModal} />
+      </>
+      <>
+        {isAddingNew ? (
+          <NewCatForm
+            addNewImage={addNewImage}
+            addNewDate={addNewDate}
+            addNewCat={addNewCat}
+          />
+        ) : null}
       </>
 
       <>
@@ -81,6 +102,7 @@ const App = () => {
           addNewImage={addNewImage}
           addNewDate={addNewDate}
           deletedCat={deletedCat}
+          showCatEditForm={showCatEditForm}
         />
       </>
     </main>

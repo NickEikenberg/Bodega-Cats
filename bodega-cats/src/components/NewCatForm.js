@@ -1,12 +1,12 @@
 const NewCatForm = (props) => {
   return (
-    <section>
+    <section className="newBodegaCatModal">
       <h2>Submit New Bodega Cat</h2>
       <form onSubmit={props.addNewCat}>
-        Image: <input type="text" onChange={props.addNewImage} />
+        <span>Image: </span> <input type="text" onChange={props.addNewImage} />
         <br />
         <br />
-        Date: <input type="text" onChange={props.addNewDate} />
+        <span>Date: </span> <input type="text" onChange={props.addNewDate} />
         <br />
         <br />
         <input type="submit" />
